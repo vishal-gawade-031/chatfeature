@@ -1,0 +1,12 @@
+body{
+    margin-left: 20px;
+}
+
+.box{
+    background: lightblue;
+}
+.msg{
+    background-color: dodgerblue;
+    color: whitesmoke;
+    display: inline-block;
+}
