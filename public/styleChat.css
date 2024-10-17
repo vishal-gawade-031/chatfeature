@@ -1,0 +1,86 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* Input for 'from' */
+.from {
+    width: 300px;
+    padding: 10px;
+    border: 2px solid #075E54;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.from:focus {
+    outline: none;
+    border-color: #25D366;
+}
+
+/* Textarea for message */
+.msg {
+    width: 300px;
+    height: 100px;
+    padding: 10px;
+    border: 2px solid #075E54;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    resize: none;
+    transition: all 0.3s ease;
+}
+
+.msg:focus {
+    outline: none;
+    border-color: #25D366;
+}
+
+/* Input for 'to' */
+.to {
+    width: 300px;
+    padding: 10px;
+    border: 2px solid #075E54;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.to:focus {
+    outline: none;
+    border-color: #25D366;
+}
+
+/* Button styling */
+button {
+    width: 300px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #25D366;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #128C7E;
+}
+
+/* Media query for responsiveness */
+@media (max-width: 600px) {
+    .from, .msg, .to, button {
+        width: 95%;
+    }
+}
