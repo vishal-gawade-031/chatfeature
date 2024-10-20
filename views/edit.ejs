@@ -7,10 +7,12 @@
 </head>
 <body>
     <h1>Edit your chat <%= chat.id %></h1>
-    <P> send by <% chat.from %> to <% chat.to %></P>
+    <P> send by <%= chat.from %> to <%= chat.to %></P>
     <form>
-        <textarea name="msg"> <% chat.msg %></textarea>
-        <button>Edit</button>
-    </form>
+        <textarea name="msg"> <%= chat.msg %></textarea>
+       <form method="post" action="/chat/<%= chat._id %>?_method=PUT">
+    <button type="submit">Edit</button>
+</form>
+
 </body>
 </html>

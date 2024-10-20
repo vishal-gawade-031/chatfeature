@@ -1,6 +1,7 @@
 const { type } = require('express/lib/response');
 const mongoose = require('mongoose');
 
+//we have define the schema 
 const chatschema = new mongoose.Schema({
     
     from:{
