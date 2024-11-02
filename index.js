@@ -3,6 +3,7 @@ const app=express();
 const path=require("path");
 const Chat=require("./models/chat.js");
 const methodOverride = require('method-override');
+const ExpressError=require("./ExpressError.js");
 
 app.set("views",path.join(__dirname,"views"));
 app.set("view engine","ejs");
@@ -17,7 +18,7 @@ main().then(()=>{console.log("connection succesfull")})
 .catch(err => console.log(err));
 
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/whatsapp');
+  await mongoose.connect('mongodb://127.0.0.1:27017/fakewhatsapp');
 
 }
 
@@ -26,23 +27,45 @@ const chat1=new Chat({
   to:"chetan",
   msg:"be a fullstack",
   created_at:new Date()
-})
+});
+
+// middleware function
+function asynclWrap(fn){
+  return (function (req,res,next){
+      fn(req,res,next).catch((err)=>next(err));
+  });
+}
 
 // chat1.save().then((res)=>{
 //   console.log(res)});
 
 
   //index rout to featch the chat's or data
-app.get("/chats",async(req,res)=>{
+app.get("/chats",asynclWrap (async(req,res)=>{
 
   let chats=await Chat.find()
    // console.log(chats);
+   ab=ab;
   res.render("index.ejs",{chats});
-  })
+  }));
 
   app.get("/chats/new",(req,res)=>{
+    throw new ExpressError(404,"page not found");
     res.render("new.ejs");
   });
+
+
+// part of middleware 
+  app.get("/chats/:id",async(req,res)=>{
+    let {id}=req.params;
+    let chat = await chat.findById(id);
+    if(!chat){
+      next(new ExpressError(404,"page not found"));
+    }
+    res.render("edit.ejs",{chat});
+  })
+
+
 
   //define rout for edit the message
   app.get("/chats/:id/edit",async (req,res)=>{
@@ -95,6 +118,12 @@ app.delete("/chats/:id",async (req,res)=>{
   let deleted_chat=await Chat.findOneAndDelete(id);
   // console.log(deleted);
   res.redirect("/chats");
+});
+
+//error handling middleware 
+app.use((err,req,res,next)=>{
+let {status=500,message="some error is comming"}=err;
+res.status(status).send(message);
 })
 
 app.get("/",(req,res)=>{

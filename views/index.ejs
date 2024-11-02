@@ -28,13 +28,14 @@
             <form method="POST" action="/chats/<%= chat.id %>?_method=DELETE">
                 <button>delete</button>
             </form>
+            <form action="/chats/<%= chat._id %>"method="GET">
+                <button>show</button>
+            </form>
             </div>
 
             <p>resived: <%= chat.to %></p>
     <hr>
     <p><%= chat.created_at.toString().slice(0, 4) %></p>
-
-
         </div>
     <% } %>
 </body>
